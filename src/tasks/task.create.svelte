@@ -28,7 +28,13 @@
         dispatch('created', resp.data)
         
     }
-    
+    let cates = [
+    {  name: "Casa" },
+    { name: "Trabajo" },
+    { name :"Universidad" }
+  ];
+
+  $: data.category = cates;
 </script>
 
 <Form on:submit={ createTask } { loading } >
@@ -38,18 +44,26 @@
             <Input bind:value={ data.name } label="Nombre de la tarea" placeholder="Ingrese el nombre de la tarea" icon="book" />
         </div>
     </div>
+
     <div class="columns">
         <div class="column">
             <label style="font-weight: bold;"> 
                 Fecha de término
                 <input type=date bind:value={ data.duedate}/>
             </label> 
-
         </div>
     </div>
+
     <div class="columns">
         <div class="column">
-            <Input bind:value={ data.description } label="Descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="file-signature" />
+            <label style="font-weight: bold;">Categoria</label>
+            <br>
+            <label><input type=radio bind:group={cates} value={"Casa"}>Casa</label>
+            <br>
+            <label><input type=radio bind:group={cates} value={"Trabajo"}>Trabajo</label>
+            <br>
+            <label><input type=radio bind:group={cates} value={"Universidad"}>Universidad</label>
+            <l on:click={() => cates = cates.name}></l>
         </div>
     </div>
 

@@ -42,7 +42,7 @@
             <th>#</th>
             <th>Nombre</th>
             <th>Fecha de término</th>
-            <th>Lenguajes</th>
+            <th>Categoria</th>
             <th>Fecha de creación</th>
             <th></th>
         </tr>
@@ -53,7 +53,7 @@
                 <td>{ index + 1 }</td>
                 <td>{ task.name }</td>
                 <td>{ task.duedate}</td>
-                <td>{ task.language }</td>
+                <td>{ task.category }</td>
                 <td>{ task.created }</td>
                 <td>
                     <Icon on:click={() => TaskStore.modalDelete(task)} icon="ban" />

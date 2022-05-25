@@ -34,10 +34,16 @@
         data = {
             name: $TaskStore.name,
             duedate: $TaskStore.duedate,
-            description: $TaskStore.description,
+            category: $TaskStore.category,
         }
     }
-    
+    let cates = [
+    {  name: "Casa" },
+    { name: "Trabajo" },
+    { name :"Universidad" }
+  ];
+
+  $: data.category = cates;
 </script>
 
 <Form on:submit={ updateTask } { loading } >
@@ -57,7 +63,14 @@
     </div>
     <div class="columns">
         <div class="column">
-            <Input bind:value={ data.description } label="Descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="file-signature" />
+            <label style="font-weight: bold;">Categoria</label>
+            <br>
+            <label><input type=radio bind:group={cates} value={"Casa"}>Casa</label>
+            <br>
+            <label><input type=radio bind:group={cates} value={"Trabajo"}>Trabajo</label>
+            <br>
+            <label><input type=radio bind:group={cates} value={"Universidad"}>Universidad</label>
+            <l on:click={() => cates = cates.name}></l>
         </div>
     </div>
 
