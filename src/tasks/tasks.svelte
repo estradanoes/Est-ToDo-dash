@@ -41,9 +41,9 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Horas</th>
+            <th>Fecha de término</th>
             <th>Lenguajes</th>
-            <th>Fecha</th>
+            <th>Fecha de creación</th>
             <th></th>
         </tr>
     </thead>
@@ -52,7 +52,7 @@
             <tr>
                 <td>{ index + 1 }</td>
                 <td>{ task.name }</td>
-                <td>{ task.hours }</td>
+                <td>{ task.duedate}</td>
                 <td>{ task.language }</td>
                 <td>{ task.created }</td>
                 <td>

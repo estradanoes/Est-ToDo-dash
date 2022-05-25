@@ -33,11 +33,11 @@
     function updateData() {
         data = {
             name: $TaskStore.name,
-            hours: $TaskStore.hours,
+            duedate: $TaskStore.duedate,
             description: $TaskStore.description,
         }
     }
-
+    
 </script>
 
 <Form on:submit={ updateTask } { loading } >
@@ -49,7 +49,10 @@
     </div>
     <div class="columns">
         <div class="column">
-            <Input bind:value={ data.hours } label="Horas de la tarea" placeholder="Ingrese las horas de la tarea" icon="clock" />
+            <label style="font-weight: bold;"> 
+                Fecha de término
+                <input type=date bind:value={ data.duedate }/>
+            </label> 
         </div>
     </div>
     <div class="columns">

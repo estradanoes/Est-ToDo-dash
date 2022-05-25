@@ -1,5 +1,4 @@
 <script>
-
     import { createEventDispatcher } from 'svelte'
     import { TasksStore } from '../stores'
 
@@ -7,6 +6,7 @@
 
     import Form from '../$componentes/form.svelte'
     import Input from '../$componentes/input.svelte'
+
 
     const dispatch = createEventDispatcher()
 
@@ -26,8 +26,9 @@
         TasksStore.append(resp.data)
 
         dispatch('created', resp.data)
+        
     }
-
+    
 </script>
 
 <Form on:submit={ createTask } { loading } >
@@ -39,7 +40,11 @@
     </div>
     <div class="columns">
         <div class="column">
-            <Input bind:value={ data.hours } label="Horas de la tarea" placeholder="Ingrese las horas de la tarea" icon="clock" />
+            <label style="font-weight: bold;"> 
+                Fecha de término
+                <input type=date bind:value={ data.duedate}/>
+            </label> 
+
         </div>
     </div>
     <div class="columns">

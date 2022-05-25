@@ -15,7 +15,7 @@
     <div class="columns">
         <div class="column">
             <div class="title is-4">Horas</div>
-            <div class="subtitle is-5">{ $TaskStore.hours }</div>
+            <div class="subtitle is-5">{ $TaskStore.duedate }</div>
         </div>
     </div>
     <div class="columns">
