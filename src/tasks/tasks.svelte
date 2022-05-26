@@ -39,25 +39,29 @@
 <table class="table is-striped is-fullwidth">
     <thead>
         <tr>
-            <th>#</th>
             <th>Nombre</th>
             <th>Fecha de término</th>
+            <th>Descripción</th>
             <th>Categoria</th>
-            <th>Fecha de creación</th>
-            <th></th>
+            <th>Eliminar</th>
+            <th>Visualizar</th>
+            <th>Editar</th>
         </tr>
     </thead>
     <tbody>
         {#each $TasksStore as task, index}
             <tr>
-                <td>{ index + 1 }</td>
                 <td>{ task.name }</td>
                 <td>{ task.duedate}</td>
+                <td>{ task.description }</td>
                 <td>{ task.category }</td>
-                <td>{ task.created }</td>
                 <td>
                     <Icon on:click={() => TaskStore.modalDelete(task)} icon="ban" />
+                    </td>
+                    <td>
                     <Icon on:click={() => TaskStore.modalRead(task)} icon="eye" />
+                    </td>
+                    <td>
                     <Icon on:click={() => TaskStore.modalUpdate(task)} icon="edit" />
                 </td>
             </tr>

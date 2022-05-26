@@ -34,6 +34,7 @@
         data = {
             name: $TaskStore.name,
             duedate: $TaskStore.duedate,
+            description: $TaskStore.description,
             category: $TaskStore.category,
         }
     }
@@ -63,7 +64,7 @@
     </div>
     <div class="columns">
         <div class="column">
-            <label style="font-weight: bold;">Categoria</label>
+            <label for="c" style="font-weight: bold;">Categoria</label>
             <br>
             <label><input type=radio bind:group={cates} value={"Casa"}>Casa</label>
             <br>
@@ -71,6 +72,12 @@
             <br>
             <label><input type=radio bind:group={cates} value={"Universidad"}>Universidad</label>
             <l on:click={() => cates = cates.name}></l>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <Input bind:value={ data.description } label="descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="info-circle" />
         </div>
     </div>
 
