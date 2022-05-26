@@ -35,22 +35,21 @@
 </div>
 
 <style> 
+    input[type="checkbox"] {
+        size: 120px;
+    }
    	.checked {
         /* text-decoration: line-through; */
         opacity: 0.4;
     }
     button {
-    float: right;
     border: none;
     background: transparent;
-    padding: 0;
-    margin: 0;
-    color: #dc4f21;
-    font-size: 18px;
+    font-size: 25px;
     cursor: pointer;
   }
   button:hover {
-    transform: scale(3);
+    transform: scale(1.5);
   }
 </style> 
 
@@ -67,15 +66,16 @@
     <tbody>
         {#each $TasksStore as task, index}
             <tr>
-                <td><input type="checkbox" bind:checked={task.checked}/></td>
-                <td class:checked={task.checked}>{ task.name }</td>
-                <td class:checked={task.checked}>{ task.duedate}</td>
-                <td class:checked={task.checked}>{ task.description }</td>
-                <td class:checked={task.checked}>{ task.category }</td>
+                <td><input type="checkbox" bind:checked={task.status}/></td>
+                <td class:checked={task.status}>{ task.name }</td>
+                <td class:checked={task.status}>{ task.duedate}</td>
+                <td class:checked={task.status}>{ task.description }</td>
+                <td class:checked={task.status}>{ task.category }</td>
                     
-                <td><button on:click={() => TaskStore.modalDelete(task)}>❌</button></td>
                 <td><button on:click={() => TaskStore.modalRead(task)}>👀</button></td>
                 <td><button on:click={() => TaskStore.modalUpdate(task)}>✏️</button></td>
+                <td><button on:click={() => TaskStore.modalDelete(task)}>❌</button></td>
+
             </tr>
         {/each}
     </tbody>
