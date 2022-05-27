@@ -13,6 +13,8 @@
 
 </script>
 
+
+
 <style>
     .nav {
         background-color: #8EC5FC;
@@ -22,10 +24,19 @@
         justify-content: space-between;
         align-items: center;
     }
+    button {
+    font-size: 45px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+    button:hover {
+    transform: scale(1.2);
+  }
 
 </style>
 
 <div class="nav">
     <div class="title">{ $UserStore.name  }</div>
-    <Button on:click={ logout } icon="person-running" />
+    <button on:click={ logout }>🚪</button>
 </div>
