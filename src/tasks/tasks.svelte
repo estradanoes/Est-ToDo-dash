@@ -61,6 +61,7 @@
             <th>Fecha de término</th>
             <th>Descripción</th>
             <th>Categoria</th>
+            <th>Etiqueta</th>
         </tr>
     </thead>
     <tbody>
@@ -71,6 +72,7 @@
                 <td class:checked={task.status}>{ task.duedate}</td>
                 <td class:checked={task.status}>{ task.description }</td>
                 <td class:checked={task.status}>{ task.category }</td>
+                <td class:checked={task.status}>{ task.label }</td>
                     
                 <td><button on:click={() => TaskStore.modalRead(task)}>👀</button></td>
                 <td><button on:click={() => TaskStore.modalUpdate(task)}>✏️</button></td>

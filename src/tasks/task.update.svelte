@@ -36,6 +36,7 @@
             duedate: $TaskStore.duedate,
             description: $TaskStore.description,
             category: $TaskStore.category,
+            label: $TaskStore.label
         }
     }
     let cates = [
@@ -43,7 +44,19 @@
     { name: "Trabajo" },
     { name :"Universidad" }
   ];
-
+  let etis = [
+        { name: "Despensa"},
+        { name: "Jardin"},
+        { name: "Garage"},
+        { name: "Pendientes"},
+        { name: "Oficina"},
+        { name: "Recursos Humanos"},
+        { name: "Tarea"},
+        { name: "Proyecto"},
+        { name: "Examen"}
+    ];
+   
+  $: data.label = etis;
   $: data.category = cates;
 </script>
 
@@ -73,11 +86,46 @@
             <label><input type=radio bind:group={cates} value={"Universidad"}>Universidad</label>
             <l on:click={() => cates = cates.name}></l>
         </div>
+   
+
+        <div class="column">
+            <label for="c" style="font-weight: bold;">Etiqueta</label>
+            <br>
+
+            {#if cates === "Casa"}
+            <label><input type=radio bind:group={etis} value={"Despensa"}>Despensa</label>
+            <br>
+            <label><input type=radio bind:group={etis} value={"Jardin"}>Jardin</label>
+            <br>
+            <label><input type=radio bind:group={etis} value={"Garage"}>Garage</label>
+            <l on:click={() => etis = etis.name}></l>
+    
+            {:else if cates === "Trabajo"}
+            <label><input type=radio bind:group={etis} value={"Pendientes"}>Pendientes</label>
+            <br>
+            <label><input type=radio bind:group={etis} value={"Oficina"}>Oficina</label>
+            <br>
+            <label><input type=radio bind:group={etis} value={"Recursos Humanos"}>Recursos Humanos</label>
+            <l on:click={() => etis = etis.name}></l>
+
+            {:else if cates === "Universidad"}
+            <label><input type=radio bind:group={etis} value={"Tarea"}>Tarea</label>
+            <br>
+            <label><input type=radio bind:group={etis} value={"Proyecto"}>Proyecto</label>
+            <br>
+            <label><input type=radio bind:group={etis} value={"Examen"}>Examen</label>
+            <l on:click={() => etis = etis.name}></l>
+            
+            {:else}
+                <p>Elija una categoria para visualizar etiquetas</p>
+            {/if}
+        </div>
+
     </div>
 
     <div class="columns">
         <div class="column">
-            <Input bind:value={ data.description } label="descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="info-circle" />
+            <Input bind:value={ data.description } label="Descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="info-circle" />
         </div>
     </div>
 

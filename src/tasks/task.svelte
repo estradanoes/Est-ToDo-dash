@@ -32,6 +32,12 @@
     </div>
     <div class="columns">
         <div class="column">
+            <div class="title is-4">Etiquetas</div>
+            <div class="subtitle is-5">{ $TaskStore.label }</div>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
             <div class="title is-4">Estatus</div>
             <div class="subtitle is-5">
                 {#if $TaskStore.status}
