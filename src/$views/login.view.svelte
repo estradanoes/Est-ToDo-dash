@@ -1,6 +1,6 @@
 <script>
 
-    import TeacherLogin from '../teachers/teacher.login.svelte'
+    import UserLogin from '../users/user.login.svelte'
 
 </script>
 
@@ -12,7 +12,7 @@
 
             <div class="title">Login</div>
             <div class="subtitle">Tareas</div>
-            <TeacherLogin />
+            <UserLogin />
 
         </div>
     </div>

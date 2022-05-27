@@ -3,7 +3,7 @@ import { writable } from 'svelte/store'
 export let ModalStore = Modal(null)
 
 export let TaskStore = Model('Task')
-export let TeacherStore = Model('Teacher')
+export let UserStore = Model('User')
 
 export let TasksStore = Collection('Tasks')
 

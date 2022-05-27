@@ -1,7 +1,7 @@
 <script>
 
     import { navigateTo } from 'svelte-router-spa'
-    import TeachersService from '../$services/teachers.service'
+    import UsersService from '../$services/users.service'
 
     import InputPassword from '../$componentes/input.password.svelte'
     import Input from '../$componentes/input.svelte'
@@ -11,10 +11,10 @@
     let loading = false
     let error = null
 
-    async function teacherLogin() {
+    async function userLogin() {
         
         loading = true
-        const resp = await TeachersService.teacherLogin(data)
+        const resp = await UsersService.userLogin(data)
         loading = false
 
         if(resp.error)
@@ -22,14 +22,14 @@
 
         const token = resp.data.session.token
         localStorage.setItem('token', token)
-        localStorage.setItem('teacher',  JSON.stringify(resp.data.teacher) )
+        localStorage.setItem('user',  JSON.stringify(resp.data.user) )
 
         navigateTo('tasks')
     }
 
 </script>
 
-<Form on:submit={ teacherLogin } loading={ loading } >
+<Form on:submit={ userLogin } loading={ loading } >
     <div class="columns">
         <div class="column">
             <Input bind:value={ data.email } label="Correo" placeholder="Ingrese correo" />

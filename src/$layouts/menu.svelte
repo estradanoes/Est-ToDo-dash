@@ -1,13 +1,13 @@
 <script>
 
     import { navigateTo } from 'svelte-router-spa'
-    import { TeacherStore } from '../stores'
+    import { UserStore } from '../stores'
 
     import Button from '../$componentes/button.svelte'
 
     function logout() {
         localStorage.removeItem('token')
-        localStorage.removeItem('teacher')
+        localStorage.removeItem('user')
         navigateTo('login')
     }
 
@@ -26,6 +26,6 @@
 </style>
 
 <div class="nav">
-    <div class="title">{ $TeacherStore.name  }</div>
+    <div class="title">{ $UserStore.name  }</div>
     <Button on:click={ logout } icon="person-running" />
 </div>

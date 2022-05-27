@@ -7,14 +7,14 @@ const conexionError = {
 }
 
 export default {
-    teacherLogin
+    userLogin
 }
 
-function teacherLogin(data) {
+function userLogin(data) {
     return new Promise((resolve, reject) => {
 
         Superagent
-            .post('http://localhost:7777/teachers/login')
+            .post('http://localhost:7777/users/login')
             .send(data)
             .end((error, resp) => {
                 
