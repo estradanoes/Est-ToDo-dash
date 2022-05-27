@@ -6,6 +6,8 @@ export let TaskStore = Model('Task')
 export let UserStore = Model('User')
 
 export let TasksStore = Collection('Tasks')
+export let UsersStore = Collection('Users')
+
 
 function Collection(name, state = []) {
 

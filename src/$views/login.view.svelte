@@ -1,5 +1,5 @@
 <script>
-
+    import UserCreate from '../users/user.create.svelte'
     import UserLogin from '../users/user.login.svelte'
 
 </script>
@@ -8,12 +8,17 @@
 
 <div class="container">
     <div class="columns">
+        
         <div class="column is-4">
-
-            <div class="title">Login</div>
-            <div class="subtitle">Tareas</div>
+            <br>
+            <div class="title">Iniciar Sesión</div>
+            <br>
             <UserLogin />
+         </div>
 
-        </div>
+         <div class="column is-offset-one-quarter">
+            <div class="title">Registrate</div>
+             <UserCreate />
+         </div>
     </div>
 </div>
