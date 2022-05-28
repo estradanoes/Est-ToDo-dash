@@ -11,6 +11,10 @@ export default {
     createTask,
     updateTask,
     deleteTask,
+    getCasa,
+    getTrabajo,
+    getUniversidad,
+    getAllTasks
 }
 
 function getTasks(query) {
@@ -77,6 +81,81 @@ function deleteTask( taskId ) {
 
         Superagent
             .delete(`http://localhost:7777/tasks/${ taskId }`)
+            .set('token', token)
+            .end((error, resp) => {
+                
+                if(error)
+                    return resolve( resp? resp.body : conexionError )
+
+                resolve(resp.body)
+            })
+    })
+}
+
+function getCasa(query) {
+    return new Promise((resolve, reject) => {
+
+        const token = localStorage.getItem('token')
+
+        Superagent
+            .get('http://localhost:7777/tasks')
+            .set('token', token)
+            .query(query)
+            .end((error, resp) => {
+                
+                if(error)
+                    return resolve( resp? resp.body : conexionError )
+
+                resolve(resp.body)
+            })
+    })
+}
+
+function getTrabajo(query) {
+    return new Promise((resolve, reject) => {
+
+        const token = localStorage.getItem('token')
+
+        Superagent
+            .get('http://localhost:7777/tasks')
+            .set('token', token)
+            .query(query)
+            .end((error, resp) => {
+                
+                if(error)
+                    return resolve( resp? resp.body : conexionError )
+
+                resolve(resp.body)
+            })
+    })
+}
+
+function getUniversidad(query) {
+    return new Promise((resolve, reject) => {
+
+        const token = localStorage.getItem('token')
+
+        Superagent
+            .get('http://localhost:7777/tasks')
+            .set('token', token)
+            .query(query)
+            .end((error, resp) => {
+                
+                if(error)
+                    return resolve( resp? resp.body : conexionError )
+
+                resolve(resp.body)
+            })
+    })
+}
+
+function getAllTasks() {
+    return new Promise((resolve, reject) => {
+
+        const token = localStorage.getItem('token')
+
+        Superagent
+            .get('http://localhost:7777/tasks')
             .set('token', token)
             .end((error, resp) => {
                 

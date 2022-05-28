@@ -30,7 +30,8 @@
 
         dispatch('created', resp.data)
 
-        navigateTo('tasks')
+        navigateTo('login')
+        location.reload();
 
     }
 
@@ -69,9 +70,6 @@
     
     {#if error}
         <div class="notification">{ error }</div>
-    {/if}
-    {#if error === null}
-    {navigateTo('tasks')}
     {/if}
 
 </Form>

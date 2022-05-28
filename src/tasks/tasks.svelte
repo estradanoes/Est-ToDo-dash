@@ -8,6 +8,9 @@
 
     let query = {}
     let loading = false
+    let casa = {}
+    let trabajo = {}
+    let universidad = {}
 
     getTasks()
 
@@ -23,13 +26,83 @@
         TasksStore.set(resp.data.tasks)
     }
 
+    getCasa()
+
+    async function getCasa() {
+        casa.find = "Casa"
+        loading = true
+        const resp = await TasksService.getTasks(casa)
+        loading = false
+
+        if(resp.error)
+            return error = resp.error.message
+
+        TasksStore.set(resp.data.tasks)
+    }
+
+    getTrabajo()
+
+    async function getTrabajo() {
+        trabajo.find = "Trabajo"
+        loading = true
+        const resp = await TasksService.getTasks(trabajo)
+        loading = false
+
+        if(resp.error)
+            return error = resp.error.message
+
+        TasksStore.set(resp.data.tasks)
+    }
+
+    getUniversidad()
+
+    async function getUniversidad() {
+        universidad.find = "Universidad"
+        loading = true
+        const resp = await TasksService.getTasks(universidad)
+        loading = false
+
+        if(resp.error)
+            return error = resp.error.message
+
+        TasksStore.set(resp.data.tasks)
+    }
+
+    getAllTasks()
+
+    async function getAllTasks() {
+        loading = true
+        const resp = await TasksService.getTasks()
+        loading = false
+
+        if(resp.error)
+            return error = resp.error.message
+
+        TasksStore.set(resp.data.tasks)
+    }
+
+
 </script>
 
 <div class="columns">
-    <div class="column">
+    <div class="column is-6">
         <Input on:enter={ getTasks } bind:value={ query.find } placeholder="Buscar" icon="search" />
     </div>
-    <div class="column is-narrow">
+    <div class="column">
+        <Button on:click={getAllTasks} text="Mostrar todos" color="info" />
+    </div>
+
+    <div class="column">
+        <Button on:click={ getCasa } text="Casa" color="primary" />
+    </div>
+    <div class="column">
+        <Button on:click={ getTrabajo } text="Trabajo" color="primary" />
+    </div>
+    <div class="column">
+        <Button on:click={ getUniversidad }  text="Universidad" color="primary" />
+    </div>
+   
+    <div class="column">
         <Button on:click={() => TaskStore.modalCreate()} text="+ Agregar" color="info" />
     </div>
 </div>
