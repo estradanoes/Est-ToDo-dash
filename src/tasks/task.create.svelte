@@ -1,11 +1,13 @@
 <script>
     import { createEventDispatcher } from 'svelte'
+    import { onMount } from 'svelte';
     import { TasksStore } from '../stores'
 
     import TasksService from '../$services/tasks.service'
 
     import Form from '../$componentes/form.svelte'
     import Input from '../$componentes/input.svelte'
+    import Switch from '../$componentes/switch.svelte'
 
 
     const dispatch = createEventDispatcher()
@@ -28,7 +30,8 @@
         dispatch('created', resp.data)
         
     }
-   
+
+// Arreglos de categorias y etiquetas
     let cates = [
         { name: "Casa" },
         { name: "Trabajo" },
@@ -52,21 +55,27 @@
 
 <Form on:submit={ createTask } { loading } >
 
+<!-- Nombre de la tarea -->
     <div class="columns">
         <div class="column">
             <Input bind:value={ data.name } label="Nombre de la tarea" placeholder="Ingrese el nombre de la tarea" icon="book" />
         </div>
     </div>
-
+<!-- Fecha de termino y recordatorio -->
     <div class="columns">
         <div class="column">
             <label style="font-weight: bold;"> 
                 Fecha de término
-                <input type=date bind:value={ data.duedate}/>
+                <input type=date bind:value={data.duedate }/>
+            </label> 
+        </div>
+        <div class="column">
+            <label for="1" style="font-weight: bold;">Recordatorio
+                <Switch bind:checked={data.reminder}></Switch>
             </label> 
         </div>
     </div>
-
+<!-- Categorias -->
     <div class="columns">
         <div class="column">
             <label for="c" style="font-weight: bold;">Categoria</label>
@@ -114,12 +123,14 @@
         </div>
 
     </div>
-
+<!-- Etiquetas -->
     <div class="columns">
         <div class="column">
             <Input bind:value={ data.description } label="Descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="info-circle" />
         </div>
     </div>
+
+
     {#if error}
         <div class="notification">{ error }</div>
     {/if}

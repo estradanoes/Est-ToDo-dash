@@ -124,6 +124,15 @@
   button:hover {
     transform: scale(1.5);
   }
+  emoji-inactivo {
+    font-size: 25px;
+    opacity: 0.1;
+    padding-left: 30px;
+  }
+  emoji-activo {
+    font-size: 25px;
+    padding-left: 30px;
+  }
 </style> 
 
 <table class="table is-striped is-fullwidth">
@@ -135,6 +144,7 @@
             <th>Descripción</th>
             <th>Categoria</th>
             <th>Etiqueta</th>
+            <th>Recordatorio</th>
         </tr>
     </thead>
     <tbody>
@@ -146,6 +156,11 @@
                 <td class:checked={task.status}>{ task.description }</td>
                 <td class:checked={task.status}>{ task.category }</td>
                 <td class:checked={task.status}>{ task.label }</td>
+                <td class:checked={task.status}>{#if task.reminder}
+                                                    <emoji-activo>⏰</emoji-activo>
+                                                {:else}
+                                                <emoji-inactivo>⏰</emoji-inactivo>
+                                                {/if} </td>
                     
                 <td><button on:click={() => TaskStore.modalRead(task)}>👀</button></td>
                 <td><button on:click={() => TaskStore.modalUpdate(task)}>✏️</button></td>

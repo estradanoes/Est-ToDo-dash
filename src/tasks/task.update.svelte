@@ -7,6 +7,8 @@
 
     import Form from '../$componentes/form.svelte'
     import Input from '../$componentes/input.svelte'
+    import Switch from '../$componentes/switch.svelte'
+
 
     const dispatch = createEventDispatcher()
 
@@ -36,10 +38,11 @@
             duedate: $TaskStore.duedate,
             description: $TaskStore.description,
             category: $TaskStore.category,
-            label: $TaskStore.label
+            label: $TaskStore.label,
+            reminder: $TaskStore.reminder,
         }
     }
-    let cates = [
+  let cates = [
     {  name: "Casa" },
     { name: "Trabajo" },
     { name :"Universidad" }
@@ -61,12 +64,13 @@
 </script>
 
 <Form on:submit={ updateTask } { loading } >
-
+<!-- Nombre de la tarea -->
     <div class="columns">
         <div class="column">
             <Input bind:value={ data.name } label="Nombre de la tarea" placeholder="Ingrese el nombre de la tarea" icon="book" />
         </div>
     </div>
+<!-- Fecha de termino y recordatorio -->
     <div class="columns">
         <div class="column">
             <label style="font-weight: bold;"> 
@@ -74,7 +78,13 @@
                 <input type=date bind:value={ data.duedate }/>
             </label> 
         </div>
+        <div class="column">
+            <label for="1" style="font-weight: bold;">Recordatorio
+                <Switch bind:checked={data.reminder}></Switch>
+            </label> 
+        </div>
     </div>
+    <!-- Categorias -->
     <div class="columns">
         <div class="column">
             <label for="c" style="font-weight: bold;">Categoria</label>
@@ -87,7 +97,7 @@
             <l on:click={() => cates = cates.name}></l>
         </div>
    
-
+<!-- Etiquetas -->
         <div class="column">
             <label for="c" style="font-weight: bold;">Etiqueta</label>
             <br>
@@ -122,7 +132,7 @@
         </div>
 
     </div>
-
+<!-- Descripción -->
     <div class="columns">
         <div class="column">
             <Input bind:value={ data.description } label="Descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="info-circle" />

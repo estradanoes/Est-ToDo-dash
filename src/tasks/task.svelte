@@ -49,4 +49,17 @@
             </div>
         </div>
     </div>
+    <div class="columns">
+        <div class="column">
+            <div class="title is-4">Recordatorio</div>
+            <div class="subtitle is-5">
+                {#if $TaskStore.reminder}
+                    <p>Recordatorio activo</p>
+                {:else}
+                    <p>Sin recordatorio</p>
+                {/if}
+            
+            </div>
+        </div>
+    </div>
 {/if}
