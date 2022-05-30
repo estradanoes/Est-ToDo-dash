@@ -4,7 +4,7 @@
 
 </script>
 
-<img src="https://picsum.photos/1600/300" alt="">
+<img src="https://picsum.photos/1800/300" alt="">
 
 <div class="container">
     <div class="columns">
