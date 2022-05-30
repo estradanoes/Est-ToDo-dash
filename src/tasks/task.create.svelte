@@ -48,9 +48,10 @@
         { name: "Proyecto"},
         { name: "Examen"}
     ];
-   
-  $: data.label = etis;
-  $: data.category = cates;
+   if (!cates.name) {cates =  "Sin categoria";}
+   $: data.category = cates;
+   if (!data.label) {etis =  "Sin etiqueta";}
+   $: data.label = etis;
 </script>
 
 <Form on:submit={ createTask } { loading } >

@@ -11,6 +11,7 @@
     let casa = {}
     let trabajo = {}
     let universidad = {}
+    let sinCat = {}
 
     getTasks()
 
@@ -68,6 +69,20 @@
         TasksStore.set(resp.data.tasks)
     }
 
+    getSinCat()
+
+    async function getSinCat() {
+        sinCat.find = "Sin categoria"
+        loading = true
+        const resp = await TasksService.getTasks(sinCat)
+        loading = false
+
+        if(resp.error)
+            return error = resp.error.message
+
+        TasksStore.set(resp.data.tasks)
+    }
+
     getAllTasks()
 
     async function getAllTasks() {
@@ -100,6 +115,9 @@
     </div>
     <div class="column">
         <Button on:click={ getUniversidad }  text="Universidad" color="primary" />
+    </div>
+    <div class="column">
+        <Button on:click={ getSinCat }  text="Sin categoria" color="primary" />
     </div>
    
     <div class="column">

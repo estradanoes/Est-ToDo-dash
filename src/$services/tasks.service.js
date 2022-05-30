@@ -149,6 +149,25 @@ function getUniversidad(query) {
     })
 }
 
+function getSinCat(query) {
+    return new Promise((resolve, reject) => {
+
+        const token = localStorage.getItem('token')
+
+        Superagent
+            .get('http://localhost:7777/tasks')
+            .set('token', token)
+            .query(query)
+            .end((error, resp) => {
+                
+                if(error)
+                    return resolve( resp? resp.body : conexionError )
+
+                resolve(resp.body)
+            })
+    })
+}
+
 function getAllTasks() {
     return new Promise((resolve, reject) => {
 
