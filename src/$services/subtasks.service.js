@@ -9,6 +9,7 @@ const conexionError = {
 export default {
     getSubtasks,
     createSubtask,
+    deleteSubtask
 }
 
 function getSubtasks(query) {
@@ -39,6 +40,24 @@ function createSubtask(data) {
             .post('http://localhost:7777/subtasks')
             .set('token', token)
             .send(data)
+            .end((error, resp) => {
+                
+                if(error)
+                    return resolve( resp? resp.body : conexionError )
+
+                resolve(resp.body)
+            })
+    })
+}
+
+function deleteSubtask( subtaskId ) {
+    return new Promise((resolve, reject) => {
+
+        const token = localStorage.getItem('token')
+
+        Superagent
+            .delete(`http://localhost:7777/subtasks/${ subtaskId }`)
+            .set('token', token)
             .end((error, resp) => {
                 
                 if(error)
