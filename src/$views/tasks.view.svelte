@@ -1,6 +1,7 @@
 <script>
 
     import { TaskStore } from '../stores'
+    import { SubtaskStore, SubtasksStore } from '../stores'
 
     import MenuLayout from '../$layouts/menu.svelte'
 
@@ -9,6 +10,9 @@
     import TaskCreate from '../tasks/task.create.svelte'
     import TaskUpdate from '../tasks/task.update.svelte'
     import TaskDelete from '../tasks/task.delete.svelte'
+
+    import Subtasks from '../subtasks/subtasks.svelte'
+    import SubtaskCreate from '../subtasks/subtask.create.svelte'
 
     import Modal from '../$componentes/modal.svelte'
 
@@ -29,6 +33,15 @@
 <Modal id="TaskRead">
     <Task />
 </Modal>
+
+<Modal id="TaskSubs">
+    <Subtasks />
+</Modal>
+
+<Modal id="SubtaskCreate">
+    <SubtaskCreate on:created={ SubtaskStore.modalClose } />
+</Modal>
+
 
 <MenuLayout />
 <div class="container">

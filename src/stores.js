@@ -3,9 +3,11 @@ import { writable } from 'svelte/store'
 export let ModalStore = Modal(null)
 
 export let TaskStore = Model('Task')
+export let SubtaskStore = Model('Subtask')
 export let UserStore = Model('User')
 
 export let TasksStore = Collection('Tasks')
+export let SubtasksStore = Collection('Subtasks')
 export let UsersStore = Collection('Users')
 
 
@@ -56,6 +58,11 @@ function Model(name, state = null) {
         if(data) set(data)
     }
 
+    function modalSubs(data = null) {
+        ModalStore.set(`${ name }Subs`)
+        if(data) set(data)
+    }
+
     function modalUpdate(data = null) {
         ModalStore.set(`${ name }Update`)
         if(data) set(data)
@@ -81,6 +88,7 @@ function Model(name, state = null) {
     return {
         modalCreate,
         modalRead,
+        modalSubs,
         modalUpdate,
         modalDelete,
         modalOpen,

@@ -18,8 +18,8 @@
 </script>
 
 <svelte:window on:keyup={onKeyup}/>
-
-<div class="modal" class:is-active={ show } >
+{#if show}
+    <div class="modal is-active"  >
     <div on:click={ closeModal } class="modal-background"></div>
     <div class="modal-content">
 
@@ -32,3 +32,4 @@
     </div>
     <button on:click={ closeModal } class="modal-close is-large" aria-label="close"></button>
 </div>
+{/if}

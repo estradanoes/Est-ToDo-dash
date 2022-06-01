@@ -1,5 +1,5 @@
 <script>
-    import { TasksStore, TaskStore } from '../stores'
+    import { TasksStore, TaskStore} from '../stores'
 
     import TasksService from '../$services/tasks.service'
 
@@ -98,7 +98,7 @@
 
 
 </script>
-
+<!-- Botonera -->
 <div class="columns">
     <div class="column is-6">
         <Input on:enter={ getTasks } bind:value={ query.find } placeholder="Buscar" icon="search" />
@@ -163,6 +163,10 @@
             <th>Categoria</th>
             <th>Etiqueta</th>
             <th>Recordatorio</th>
+            <th>Subtarea</th>
+            <th>Visualizar</th>
+            <th>Editar</th>
+            <th>Borrar</th>
         </tr>
     </thead>
     <tbody>
@@ -179,7 +183,8 @@
                                                 {:else}
                                                 <emoji-inactivo>⏰</emoji-inactivo>
                                                 {/if} </td>
-                    
+
+                <td><button on:click={() => TaskStore.modalSubs(task)}>📝</button></td>
                 <td><button on:click={() => TaskStore.modalRead(task)}>👀</button></td>
                 <td><button on:click={() => TaskStore.modalUpdate(task)}>✏️</button></td>
                 <td><button on:click={() => TaskStore.modalDelete(task)}>❌</button></td>
