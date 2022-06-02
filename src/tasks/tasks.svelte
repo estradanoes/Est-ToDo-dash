@@ -201,20 +201,25 @@
 <br>
 <div class="columns is-centered">
     <div class="column is-half">
-<div class="card">
-    <footer class="card-footer">
-        {#each $SummaryStore as summary, index}
-        {#if summary._id}
-             <!-- svelte-ignore a11y-invalid-attribute -->
-             <a href="#" class="card-footer-item">Completadas  { summary.total }</a>
-            {:else}
-            <!-- svelte-ignore a11y-invalid-attribute -->
-            <a href="#" class="card-footer-item">Incompletas  { summary.total }</a>
-            {/if}
-        {/each}
-    </footer>
-  </div>
-</div>
+        <div class="card">
+            <footer class="card-footer">
+                {#each $SummaryStore as summary, index}
+                {#if summary.index===0}
+                    <!-- svelte-ignore a11y-invalid-attribute -->
+                    <a href="#" class="card-footer-item">No tienes tareas pendientes</a>
+               
+                {:else if summary._id}
+                    <!-- svelte-ignore a11y-invalid-attribute -->
+                    <a href="#" class="card-footer-item">Tareas completadas:   { summary.total }</a>
+                    {:else if !summary._id}
+                    <!-- svelte-ignore a11y-invalid-attribute -->
+                    <a href="#" class="card-footer-item">Tareas por completar:   { summary.total }</a>
+                {/if}
+                
+                {/each}
+            </footer>
+        </div>
+    </div>
 </div>
   
 
