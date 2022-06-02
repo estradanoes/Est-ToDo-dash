@@ -156,7 +156,74 @@
     </div>
 </div>
 
-<style> 
+
+<table class="table is-striped is-fullwidth">
+    <thead>
+        <tr>
+            <td></td>
+            <th>Nombre</th>
+            <th>Fecha de término</th>
+            <th>Descripción</th>
+            <th>Categoria</th>
+            <th>Etiqueta</th>
+            <th>Recordatorio</th>
+            <th>Subtarea</th>
+            <th>Visualizar</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {#each $TasksStore as task, index}
+
+            <tr>
+                <td><input type="checkbox" bind:checked={task.status} on:click={() => updateTask(task) && location.reload()}/></td>
+                <td class:checked={task.status}>{ task.name }</td>
+                <td class:checked={task.status}>{ task.duedate}</td>
+                <td class:checked={task.status}>{ task.description }</td>
+                <td class:checked={task.status}>{ task.category }</td>
+                <td class:checked={task.status}>{ task.label }</td>
+                <td class:checked={task.status}>{#if task.reminder}
+                                                    <emoji-activo>⏰</emoji-activo>
+                                                {:else}
+                                                <emoji-inactivo>⏰</emoji-inactivo>
+                                                {/if} </td>
+
+                <td><button on:click={() => TaskStore.modalSubs(task)}>📝</button></td>
+                <td><button on:click={() => TaskStore.modalRead(task)}>👀</button></td>
+                <td><button on:click={() => TaskStore.modalUpdate(task)}>✏️</button></td>
+                <td><button on:click={() => TaskStore.modalDelete(task)}>❌</button></td>
+
+            </tr>
+        {/each}
+    </tbody>
+</table>
+<br>
+<div class="columns is-centered">
+    <div class="column is-half">
+<div class="card">
+    <footer class="card-footer">
+        {#each $SummaryStore as summary, index}
+        {#if summary._id}
+             <!-- svelte-ignore a11y-invalid-attribute -->
+             <a href="#" class="card-footer-item">Completadas  { summary.total }</a>
+            {:else}
+            <!-- svelte-ignore a11y-invalid-attribute -->
+            <a href="#" class="card-footer-item">Incompletas  { summary.total }</a>
+            {/if}
+        {/each}
+    </footer>
+  </div>
+</div>
+</div>
+  
+
+  <style> 
+    .card{
+        border-radius: 150px;
+        font-size: x-large;
+        
+    }
     input[type="checkbox"] {
         size: 120px;
     }
@@ -183,45 +250,3 @@
     padding-left: 30px;
   }
 </style> 
-
-<table class="table is-striped is-fullwidth">
-    <thead>
-        <tr>
-            <td></td>
-            <th>Nombre</th>
-            <th>Fecha de término</th>
-            <th>Descripción</th>
-            <th>Categoria</th>
-            <th>Etiqueta</th>
-            <th>Recordatorio</th>
-            <th>Subtarea</th>
-            <th>Visualizar</th>
-            <th>Editar</th>
-            <th>Borrar</th>
-        </tr>
-    </thead>
-    <tbody>
-        {#each $TasksStore as task, index}
-
-            <tr>
-                <td><input type="checkbox" bind:checked={task.status} on:click={() => updateTask(task)}/></td>
-                <td class:checked={task.status}>{ task.name }</td>
-                <td class:checked={task.status}>{ task.duedate}</td>
-                <td class:checked={task.status}>{ task.description }</td>
-                <td class:checked={task.status}>{ task.category }</td>
-                <td class:checked={task.status}>{ task.label }</td>
-                <td class:checked={task.status}>{#if task.reminder}
-                                                    <emoji-activo>⏰</emoji-activo>
-                                                {:else}
-                                                <emoji-inactivo>⏰</emoji-inactivo>
-                                                {/if} </td>
-
-                <td><button on:click={() => TaskStore.modalSubs(task)}>📝</button></td>
-                <td><button on:click={() => TaskStore.modalRead(task)}>👀</button></td>
-                <td><button on:click={() => TaskStore.modalUpdate(task)}>✏️</button></td>
-                <td><button on:click={() => TaskStore.modalDelete(task)}>❌</button></td>
-
-            </tr>
-        {/each}
-    </tbody>
-</table>
