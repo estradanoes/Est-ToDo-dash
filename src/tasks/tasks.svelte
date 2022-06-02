@@ -1,7 +1,9 @@
 <script>
-    import { TasksStore, TaskStore} from '../stores'
+    import { UserStore,TasksStore, TaskStore, SummaryStore} from '../stores'
 
     import TasksService from '../$services/tasks.service'
+    import SummaryService from '../$services/summary.service'
+
 
     import Button from '../$componentes/button.svelte'
     import Input from '../$componentes/input.svelte'
@@ -12,7 +14,46 @@
     let trabajo = {}
     let universidad = {}
     let sinCat = {}
+       
 
+// Summary
+    getSummary()
+
+    async function getSummary() {
+
+        loading = true
+        const resp = await SummaryService.getSummary($UserStore._id)
+        loading = false
+
+        if(resp.error)
+            return error = resp.error.message
+
+        SummaryStore.set(resp.data.suma)
+
+    }
+
+//Actualizar status
+
+    $: $TaskStore 
+    let data = {}
+    let error = null
+    let valStatus = false;
+    
+    async function updateTask(task) {
+
+        const status= !task.status
+
+            loading = true
+            const resp = await TasksService.updateTask(task._id, {status})
+            loading = false
+
+            if(resp.error)
+                return error = resp.error.message
+
+            TasksStore.replace(resp.data)
+    
+    }
+// Obtener tareas
     getTasks()
 
     async function getTasks() {
@@ -27,8 +68,6 @@
         TasksStore.set(resp.data.tasks)
     }
 
-    getCasa()
-
     async function getCasa() {
         casa.find = "Casa"
         loading = true
@@ -40,8 +79,6 @@
 
         TasksStore.set(resp.data.tasks)
     }
-
-    getTrabajo()
 
     async function getTrabajo() {
         trabajo.find = "Trabajo"
@@ -55,8 +92,6 @@
         TasksStore.set(resp.data.tasks)
     }
 
-    getUniversidad()
-
     async function getUniversidad() {
         universidad.find = "Universidad"
         loading = true
@@ -69,8 +104,6 @@
         TasksStore.set(resp.data.tasks)
     }
 
-    getSinCat()
-
     async function getSinCat() {
         sinCat.find = "Sin categoria"
         loading = true
@@ -82,8 +115,6 @@
 
         TasksStore.set(resp.data.tasks)
     }
-
-    getAllTasks()
 
     async function getAllTasks() {
         loading = true
@@ -171,8 +202,9 @@
     </thead>
     <tbody>
         {#each $TasksStore as task, index}
+
             <tr>
-                <td><input type="checkbox" bind:checked={task.status}/></td>
+                <td><input type="checkbox" bind:checked={task.status} on:click={() => updateTask(task)}/></td>
                 <td class:checked={task.status}>{ task.name }</td>
                 <td class:checked={task.status}>{ task.duedate}</td>
                 <td class:checked={task.status}>{ task.description }</td>

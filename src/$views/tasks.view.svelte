@@ -46,8 +46,6 @@
     <SubtaskDelete on:created={ SubtaskStore.modalClose } />
 </Modal>
 
-
-
 <MenuLayout />
 <div class="container">
     <br>

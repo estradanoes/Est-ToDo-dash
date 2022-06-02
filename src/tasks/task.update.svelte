@@ -64,13 +64,13 @@
 </script>
 
 <Form on:submit={ updateTask } { loading } >
-<!-- Nombre de la tarea -->
+    <!-- Nombre de la tarea -->
     <div class="columns">
         <div class="column">
             <Input bind:value={ data.name } label="Nombre de la tarea" placeholder="Ingrese el nombre de la tarea" icon="book" />
         </div>
     </div>
-<!-- Fecha de termino y recordatorio -->
+    <!-- Fecha de termino y recordatorio -->
     <div class="columns">
         <div class="column">
             <label style="font-weight: bold;"> 
@@ -97,7 +97,7 @@
             <l on:click={() => cates = cates.name}></l>
         </div>
    
-<!-- Etiquetas -->
+    <!-- Etiquetas -->
         <div class="column">
             <label for="c" style="font-weight: bold;">Etiqueta</label>
             <br>
@@ -132,7 +132,7 @@
         </div>
 
     </div>
-<!-- Descripción -->
+    <!-- Descripción -->
     <div class="columns">
         <div class="column">
             <Input bind:value={ data.description } label="Descripción de la tarea" placeholder="Ingrese la descripción de la tarea" icon="info-circle" />
