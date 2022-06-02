@@ -175,7 +175,6 @@
     </thead>
     <tbody>
         {#each $TasksStore as task, index}
-
             <tr>
                 <td><input type="checkbox" bind:checked={task.status} on:click={() => updateTask(task) && location.reload()}/></td>
                 <td class:checked={task.status}>{ task.name }</td>
@@ -204,7 +203,7 @@
         <div class="card">
             <footer class="card-footer">
                 {#each $SummaryStore as summary, index}
-                {#if summary.index===0}
+                {#if summary._id === true && summary.total === $TasksStore.length}
                     <!-- svelte-ignore a11y-invalid-attribute -->
                     <a href="#" class="card-footer-item">No tienes tareas pendientes</a>
                
@@ -222,7 +221,6 @@
     </div>
 </div>
   
-
   <style> 
     .card{
         border-radius: 150px;
@@ -241,17 +239,17 @@
     background: transparent;
     font-size: 25px;
     cursor: pointer;
-  }
-  button:hover {
-    transform: scale(1.5);
-  }
-  emoji-inactivo {
+    }
+    button:hover {
+        transform: scale(1.5);
+    }
+    emoji-inactivo {
     font-size: 25px;
     opacity: 0.1;
     padding-left: 30px;
-  }
-  emoji-activo {
+    }
+    emoji-activo {
     font-size: 25px;
     padding-left: 30px;
-  }
+    }
 </style> 
